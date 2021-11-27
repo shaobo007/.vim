@@ -62,8 +62,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/vim-cursorword'
 
 " Git
-"Plug 'rhysd/conflict-marker.vim'
-"Plug 'tpope/vim-fugitive'
+Plug 'rhysd/conflict-marker.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
