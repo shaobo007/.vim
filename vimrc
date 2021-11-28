@@ -1,4 +1,11 @@
-"let mapleader=" "
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+let mapleader=" " "使leader键为空格
 syntax on
 set number
 set cursorline
@@ -10,6 +17,7 @@ set hlsearch
 set incsearch
 set relativenumber
 set ignorecase
+set smartcase
 exec "nohlsearch"
 
 set nocompatible
@@ -36,12 +44,29 @@ set laststatus=2
 set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
+map s <nop>
 map S :w<CR>
 map R :source $MYVIMRC<CR>
 map Q :q<CR>
 
+"分屏操作"
+map sl :set splitright<CR>:vsplit<CR>
+map sh :set nosplitright<CR>:vsplit<CR>
+map sk :set nosplitbelow<CR>:split<CR>
+map sj :set splitbelow<CR>:split<CR>
+map <LEADER>l <C-w>l
+map <LEADER>k <C-w>k
+map <LEADER>h <C-w>h
+map <LEADER>j <C-w>j
+"标签页"
+map tn :tabe<CR>
+map th :-tabnext<CR>
+map tl :+tabnext<CR>
 
+noremap <LEADER><CR> :nohlsearch<CR>
+
+
+"安装插件"
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
@@ -49,6 +74,9 @@ Plug 'connorholyday/vim-snazzy'
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Taglist 显示函数列表"
+"Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
 " Auto Complete
 Plug 'Valloric/YouCompleteMe'
@@ -69,6 +97,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
+" HTML, CSS, JavaScript, PHP, JSON, etc.
+"Plug 'elzr/vim-json'
+"Plug 'hail2u/vim-css3-syntax'
+"Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
+"Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+"Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
+"Plug 'mattn/emmet-vim'
+
 " Python
 Plug 'vim-scripts/indentpython.vim'
 
@@ -79,7 +115,7 @@ Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
-
+"设置主题"
 let g:SnazzyTransparent = 1
 colorscheme snazzy
 
@@ -90,13 +126,13 @@ map tt :NERDTreeToggle<CR>
 "let NERDTreeMapOpenExpl = ""
 "let NERDTreeMapUpdir = ""
 let NERDTreeMapUpdirKeepOpen = "l"
-"let NERDTreeMapOpenSplit = ""
-"let NERDTreeOpenVSplit = ""
+let NERDTreeMapOpenSplit = ""
+let NERDTreeOpenVSplit = ""
 let NERDTreeMapActivateNode = "i"
 let NERDTreeMapOpenInTab = "o"
-"let NERDTreeMapPreview = ""
+let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = "n"
-"let NERDTreeMapChangeRoot = "y"
+let NERDTreeMapChangeRoot = "y"
 
 " ==
 " == NERDTree-git
@@ -114,16 +150,51 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 " ===
+" === You Complete ME
+" ===
+nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap g/ :YcmCompleter GetDoc<CR>
+nnoremap gt :YcmCompleter GetType<CR>
+nnoremap gr :YcmCompleter GoToReferences<CR>
+let g:ycm_autoclose_preview_window_after_completion=0
+let g:ycm_autoclose_preview_window_after_insertion=1
+
+" ===
 " === ale
 " ===
 let b:ale_linters = ['pylint']
 let b:ale_fixers = ['autopep8', 'yapf']
 
 " ===
+" === MarkdownPreview
+" ===
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+let g:mkdp_browser = 'google-chrome-stable'
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1
+    \ }
+let g:mkdp_markdown_css = ''
+let g:mkdp_highlight_css = ''
+let g:mkdp_port = ''
+let g:mkdp_page_title = '「${name}」'
+
+" ===
 " === Python-syntax
 " ===
 let g:python_highlight_all = 1
-" let g:python_slow_sync = 0
 
 " ===
 " === vim-indent-guide
@@ -132,11 +203,36 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 1
-"silent! unmap <LEADER>ig
-"autocmd WinEnter * silent! unmap <LEADER>ig
 
 " ===
 " === Undotree
 " ===
 let g:undotree_DiffAutoOpen = 0
 map L :UndotreeToggle<CR>
+
+" Compile function,press <F5> to run code
+map <F5> :call CompileRunGcc()<CR>  
+func! CompileRunGcc()
+  exec "w"
+  if &filetype == 'c'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'cpp'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'java'
+    exec "!javac %"
+    exec "!time java %<"
+  elseif &filetype == 'sh'
+    :!time bash %
+  elseif &filetype == 'python'
+    silent! exec "!clear"
+    exec "!time python %"
+  elseif &filetype == 'html'
+    exec "!google-chrome-stable % &"
+  elseif &filetype == 'markdown'
+    exec "MarkdownPreview"
+  elseif &filetype == 'vimwiki'
+    exec "MarkdownPreview"
+  endif
+endfunc
