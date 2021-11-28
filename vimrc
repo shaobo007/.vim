@@ -8,6 +8,8 @@ set wildmenu
 set showcmd
 set hlsearch
 set incsearch
+set relativenumber
+set ignorecase
 exec "nohlsearch"
 
 set nocompatible
