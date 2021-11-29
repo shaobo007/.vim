@@ -53,6 +53,7 @@ set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 map s <nop>
+map J <nop>
 map S :w<CR>
 map R :source $MYVIMRC<CR>
 map Q :q<CR>
@@ -62,23 +63,48 @@ map sl :set splitright<CR>:vsplit<CR>
 map sh :set nosplitright<CR>:vsplit<CR>
 map sk :set nosplitbelow<CR>:split<CR>
 map sj :set splitbelow<CR>:split<CR>
-map <LEADER>l <C-w>l
-map <LEADER>k <C-w>k
-map <LEADER>h <C-w>h
-map <LEADER>j <C-w>j
+"分屏之间切换
+noremap <LEADER>l <C-w>l
+noremap <LEADER>k <C-w>k
+noremap <LEADER>h <C-w>h
+noremap <LEADER>j <C-w>j
+noremap <LEADER>q <C-w>o  "关闭所有分屏
+"调整分屏大小
+noremap <LEADER><up> :res +4<CR> 
+noremap <LEADER><down> :res -4<CR> 
+noremap <LEADER><left> :vertical resize-4<CR> 
+noremap <LEADER><right> :vertical resize+4<CR> 
+
+" 括号自动补全"
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {}<ESC>i
+inoremap < <><ESC>i
 
 "标签页"
 map tn :tabe<CR>
-map th :-tabnext<CR>
-map tl :+tabnext<CR>
-map tmh :-tabmove<CR>
-map tml :+tabmove<CR>
+map - :-tabnext<CR>  "标签页切换
+map = :+tabnext<CR>  
+map _ :-tabmove<CR>  "移动标签页
+map + :+tabmove<CR>  
 
-"figlet
+"faster line navigation"
+"word
+noremap W 5w  
+noremap B 5b  
+"lines
+noremap J 5j  
+noremap K 5k
+
+"figlet"
 noremap fg :r !figlet
 
+"turnoff highlight"
 noremap <LEADER><CR> :nohlsearch<CR>
 
+"open a terminal window
+
+noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 
 "安装插件"
 call plug#begin('~/.vim/plugged')
@@ -132,6 +158,12 @@ Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to 
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+" Other visual enhancement
+"Plug 'luochen1990/rainbow'
+"Plug 'mg979/vim-xtabline'
+"Plug 'ryanoasis/vim-devicons'  "nerdtree文件类型图标
+Plug 'wincent/terminus'
 
 call plug#end()
 
@@ -269,7 +301,7 @@ func! CompileRunGcc()
     :sp
     :term python %"
   elseif &filetype == 'html'
-    exec "!google-chrome-stable % &"
+    exec "!chrome % &"
   elseif &filetype == 'markdown'
     exec "MarkdownPreview"
   elseif &filetype == 'vimwiki'
