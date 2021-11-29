@@ -104,12 +104,17 @@ noremap <LEADER><CR> :nohlsearch<CR>
 
 "open a terminal window
 
-noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+noremap <LEADER>/ :set splitbelow<CR>:term<CR>
 
 "安装插件"
 call plug#begin('~/.vim/plugged')
+"vim主题插件"
 Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
+"Plug 'vim-airline/vim-airline-themes'
+"Plug 'NLKNguyen/papercolor-theme'
+"Plug 'ayu-theme/ayu-vim'
+"Plug 'bling/vim-bufferline'
 
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -147,7 +152,12 @@ Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " Python
 Plug 'vim-scripts/indentpython.vim'
-
+" Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
+"Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
+"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+"Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
+"Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
+"Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
