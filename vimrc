@@ -265,8 +265,9 @@ func! CompileRunGcc()
   elseif &filetype == 'sh'
     :!time bash %
   elseif &filetype == 'python'
-    silent! exec "!clear"
-    exec "!time python %"
+    set splitbelow
+    :sp
+    :term python %"
   elseif &filetype == 'html'
     exec "!google-chrome-stable % &"
   elseif &filetype == 'markdown'
