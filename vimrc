@@ -103,7 +103,11 @@ noremap <LEADER><CR> :nohlsearch<CR>
 
 "open a terminal window
 
-noremap <LEADER>/ :set splitbelow<CR>:term<CR>
+noremap <LEADER>t :set splitbelow<CR>:term<CR>
+"edit anywhere  
+noremap <LEADER>e :tabe<CR>:e ~/.vim/vimrc<CR>
+noremap <LEADER>ra :tabe<CR>:e ~/.config/ranger/rc.conf<CR>
+noremap <LEADER>rc :tabe<CR>:e ~/.bashrc<CR>
 
 "安装插件"
 call plug#begin('~/.vim/plugged')
