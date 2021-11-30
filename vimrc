@@ -80,7 +80,6 @@ inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
 inoremap { {}<ESC>i
 inoremap < <><ESC>i
-
 "标签页"
 map tn :tabe<CR>
 map - :-tabnext<CR>  "标签页切换
@@ -97,7 +96,7 @@ noremap J 5j
 noremap K 5k
 
 "figlet"
-noremap fg :r !figlet
+noremap tx :r !figlet
 
 "turnoff highlight"
 noremap <LEADER><CR> :nohlsearch<CR>
@@ -111,7 +110,7 @@ call plug#begin('~/.vim/plugged')
 "vim主题插件"
 Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'NLKNguyen/papercolor-theme'
 "Plug 'ayu-theme/ayu-vim'
 "Plug 'bling/vim-bufferline'
@@ -172,15 +171,21 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Other visual enhancement
 "Plug 'luochen1990/rainbow'
 "Plug 'mg979/vim-xtabline'
-"Plug 'ryanoasis/vim-devicons'  "nerdtree文件类型图标
+Plug 'ryanoasis/vim-devicons'  "nerdtree文件类型图标
 Plug 'wincent/terminus'
+
+"other util
+Plug 'makerj/vim-pdf'
 
 call plug#end()
 
 "设置主题"
 let g:SnazzyTransparent = 1
 colorscheme snazzy
-
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 " ===
 " === NERDTree
 " ===
