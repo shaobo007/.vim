@@ -14,11 +14,13 @@ endif
 
 
 let mapleader=" " "使leader键为空格
+syntax enable
 syntax on
 set number
 set cursorline
 set wrap
 set linebreak
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu
 set showcmd
 set hlsearch
@@ -80,6 +82,7 @@ inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
 inoremap { {}<ESC>i
 inoremap < <><ESC>i
+
 "标签页"
 map tn :tabe<CR>
 map - :-tabnext<CR>  "标签页切换
@@ -115,14 +118,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'NLKNguyen/papercolor-theme'
-"Plug 'ayu-theme/ayu-vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'ayu-theme/ayu-vim'
 "Plug 'bling/vim-bufferline'
 
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 " Taglist 显示函数列表"
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
@@ -155,12 +159,14 @@ Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " Python
 Plug 'vim-scripts/indentpython.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 "Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 "Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
-"Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
 "Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
 "Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
+"Plug 'cjrh/vim-conda'
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
@@ -171,7 +177,7 @@ Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to 
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-
+Plug 'junegunn/vim-peekaboo'
 " Other visual enhancement
 "Plug 'luochen1990/rainbow'
 "Plug 'mg979/vim-xtabline'
@@ -190,6 +196,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+set helplang=cn
+set ambiwidth=double
+let g:airline_powerline_font = 1
+let g:airline_theme = "dark"
+
 " ===
 " === NERDTree
 " ===
@@ -230,6 +241,15 @@ nnoremap gr :YcmCompleter GoToReferences<CR>
 let g:ycm_autoclose_preview_window_after_completion=0
 let g:ycm_autoclose_preview_window_after_insertion=1
 
+
+" ===
+" === Snippets
+" ===
+inoremap <c-e> <nop>
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-e>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
 " ===
 " === ale
 " ===
