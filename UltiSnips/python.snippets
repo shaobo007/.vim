@@ -1,0 +1,15 @@
+snippet comme "Comment Section"
+" ==${1:Comment for this section}== "
+endsnippet
+
+snippet dlmodule "nn.Module"
+class ${1:ModuleName}(nn.Module):
+    def __init__(self, ${3:params}, **kwargs):
+        super(${2:ModuleName}).__init__(**kwargs)
+          
+    def forward(self, x):
+        ${4:pass}
+endsnippet
+
+
+

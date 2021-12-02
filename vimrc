@@ -14,6 +14,7 @@ endif
 
 
 let mapleader=" " "使leader键为空格
+set t_Co=256
 syntax enable
 syntax on
 set number
@@ -22,7 +23,6 @@ set wrap
 set linebreak
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu
-set showcmd
 set hlsearch
 set incsearch
 set relativenumber
@@ -85,10 +85,10 @@ inoremap < <><ESC>i
 
 "标签页"
 map tn :tabe<CR>
-map - :-tabnext<CR>  "标签页切换
-map = :+tabnext<CR>  
-map _ :-tabmove<CR>  "移动标签页
-map + :+tabmove<CR>  
+map th :-tabnext<CR>  "标签页切换
+map tl :+tabnext<CR>  
+map tmh :-tabmove<CR>  "移动标签页
+map tml :+tabmove<CR>  
 
 "faster line navigation"
 "word
@@ -105,12 +105,13 @@ noremap tx :r !figlet
 noremap <LEADER><CR> :nohlsearch<CR>
 
 "open a terminal window
-
-noremap <LEADER>t :set splitbelow<CR>:term<CR>
-"edit anywhere  
+noremap <LEADER>/ :set splitbelow<CR>:term<CR>
 noremap <LEADER>e :tabe<CR>:e ~/.vim/vimrc<CR>
 noremap <LEADER>ra :tabe<CR>:e ~/.config/ranger/rc.conf<CR>
 noremap <LEADER>rc :tabe<CR>:e ~/.bashrc<CR>
+
+" Press space twice to jump to the next '<+++>' and edit it
+noremap <LEADER>z <Esc>/<+++><CR>:nohlsearch<CR>c5l
 
 "安装插件"
 call plug#begin('~/.vim/plugged')
@@ -147,7 +148,6 @@ Plug 'itchyny/vim-cursorword'
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 "Plug 'elzr/vim-json'
@@ -178,6 +178,8 @@ Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or 
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'junegunn/vim-peekaboo'
+Plug 'voldikss/vim-translator'
+
 " Other visual enhancement
 "Plug 'luochen1990/rainbow'
 "Plug 'mg979/vim-xtabline'
@@ -192,15 +194,13 @@ call plug#end()
 "设置主题"
 let g:SnazzyTransparent = 1
 colorscheme snazzy
+let g:airline_theme='dark'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-set helplang=cn
-set ambiwidth=double
-let g:airline_powerline_font = 1
-let g:airline_theme = "dark"
-
+let g:airline#extensions#tabline#buffer_nr_show = 0
+" 映射切换buffer的键位
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
 " ===
 " === NERDTree
 " ===
@@ -282,6 +282,7 @@ let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
+source ~/.vim/md-snips.vim
 " ===
 " === Python-syntax
 " ===
@@ -320,8 +321,21 @@ let g:VM_maps["Redo"]               = '<C-r>'
 let g:undotree_DiffAutoOpen = 0
 map L :UndotreeToggle<CR>
 
+" ===
+" === Tanslator
+" ===
+" Echo translation in the cmdline
+nmap <silent><Leader>t :Translate<CR>
+vmap <silent><Leader>t :TranslateV<CR>
+" Display translation in a window
+" Replace the text with translation
+"nmap <silent><Leader>z :TranslateR<CR>
+"vmap <silent><Leader>z :TranslateRV<CR>
+" Translate the text in clipboard
+nmap <silent><Leader>x :TranslateX<CR>
+
 " Compile function,press <F5> to run code
-map <F5> :call CompileRunGcc()<CR>  
+map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
   exec "w"
   if &filetype == 'c'
@@ -347,3 +361,4 @@ func! CompileRunGcc()
     exec "MarkdownPreview"
   endif
 endfunc
+set showcmd
