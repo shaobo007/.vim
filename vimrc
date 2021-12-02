@@ -22,76 +22,76 @@ set cursorline
 set wrap
 set linebreak
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
-                    set wildmenu
-                    set hlsearch
-                    set incsearch
-                    set relativenumber
-                    set ignorecase
-                    set smartcase
-                    exec "nohlsearch"
+set wildmenu
+set hlsearch
+set incsearch
+set relativenumber
+set ignorecase
+set smartcase
+exec "nohlsearch"
 
-                    set nocompatible
-                    filetype on
-                    filetype indent on
-                    filetype plugin on
-                    filetype plugin indent on
-                    set mouse=a
-                    set encoding=utf-8
-                    let &t_ut=''
-                    set expandtab
-                    set tabstop=2
-                    set shiftwidth=2
-                    set softtabstop=2
-                    set list
-                    set listchars=tab:▸\ ,trail:▫
-                    set scrolloff=5
-                    set tw=0
-                    set indentexpr=
-                    set backspace=indent,eol,start
-                    set foldmethod=indent
-                    set foldlevel=99
-                    set laststatus=2
-                    set autochdir
+set nocompatible
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+set mouse=a
+set encoding=utf-8
+let &t_ut=''
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set list
+set listchars=tab:▸\ ,trail:▫
+set scrolloff=5
+set tw=0
+set indentexpr=
+set backspace=indent,eol,start
+set foldmethod=indent
+set foldlevel=99
+set laststatus=2
+set autochdir
 
-                    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-                    map s <nop>
-                    map J <nop>
-                    map S :w<CR>
-                    map R :source $MYVIMRC<CR>
-                    map Q :q<CR>
+map s <nop>
+map J <nop>
+map S :w<CR>
+map R :source $MYVIMRC<CR>
+map Q :q<CR>
 
-                    "分屏操作"
-                    map sl :set splitright<CR>:vsplit<CR>
-                    map sh :set nosplitright<CR>:vsplit<CR>
-                    map sk :set nosplitbelow<CR>:split<CR>
-                    map sj :set splitbelow<CR>:split<CR>
-                    "分屏之间切换
-                    noremap <LEADER>l <C-w>l
-                    noremap <LEADER>k <C-w>k
-                    noremap <LEADER>h <C-w>h
-                    noremap <LEADER>j <C-w>j
-                    noremap <LEADER>q <C-w>o  "关闭所有分屏
-                    "调整分屏大小
-                    noremap <LEADER><up> :res +4<CR>
-                    noremap <LEADER><down> :res -4<CR>
-                    noremap <LEADER><left> :vertical resize-4<CR>
-                    noremap <LEADER><right> :vertical resize+4<CR>
+"分屏操作"
+map sl :set splitright<CR>:vsplit<CR>
+map sh :set nosplitright<CR>:vsplit<CR>
+map sk :set nosplitbelow<CR>:split<CR>
+map sj :set splitbelow<CR>:split<CR>
+"分屏之间切换
+noremap <LEADER>l <C-w>l
+noremap <LEADER>k <C-w>k
+noremap <LEADER>h <C-w>h
+noremap <LEADER>j <C-w>j
+noremap <LEADER>q <C-w>o  "关闭所有分屏
+"调整分屏大小
+noremap <LEADER><up> :res +4<CR>
+noremap <LEADER><down> :res -4<CR>
+noremap <LEADER><left> :vertical resize-4<CR>
+noremap <LEADER><right> :vertical resize+4<CR>
 
-                    " 括号自动补全"
-                    inoremap ( ()<ESC>i
-                    inoremap [ []<ESC>i
-                    inoremap { {}<ESC>i
-                    inoremap < <><ESC>i
+" 括号自动补全"
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {}<ESC>i
+inoremap < <><ESC>i
 
-                    "标签页"
-                    map tn :tabe<CR>
-                    map th :-tabnext<CR>  "标签页切换
-                    map tl :+tabnext<CR>
-                    map tmh :-tabmove<CR>  "移动标签页
-                    map tml :+tabmove<CR>
+"标签页"
+map tn :tabe<CR>
+map th :-tabnext<CR>  "标签页切换
+map tl :+tabnext<CR>
+map tmh :-tabmove<CR>  "移动标签页
+map tml :+tabmove<CR>
 
-                    "faster line navigation"
+"faster line navigation"
 "word
 noremap W 5w
 noremap B 5b
@@ -207,188 +207,188 @@ Plug 'makerj/vim-pdf'
 
 call plug#end()
 
-  "设置主题"
-  let g:SnazzyTransparent = 1
-  colorscheme snazzy
-  let g:airline_theme='dark'
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#formatter = 'unique_tail'
-  let g:airline#extensions#tabline#buffer_nr_show = 0
-  " 映射切换buffer的键位
-  nnoremap [b :bp<CR>
-  nnoremap ]b :bn<CR>
-  " ===
-  " === NERDTree
-  " ===
-  map tt :NERDTreeToggle<CR>
-  "let NERDTreeMapOpenExpl = ""
-  "let NERDTreeMapUpdir = ""
-  let NERDTreeMapUpdirKeepOpen = "l"
-  let NERDTreeMapOpenSplit = ""
-  let NERDTreeOpenVSplit = ""
-  let NERDTreeMapActivateNode = "i"
-  let NERDTreeMapOpenInTab = "o"
-  let NERDTreeMapPreview = ""
-  let NERDTreeMapCloseDir = "n"
-  let NERDTreeMapChangeRoot = "y"
+"设置主题"
+let g:SnazzyTransparent = 1
+colorscheme snazzy
+let g:airline_theme='dark'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#buffer_nr_show = 0
+" 映射切换buffer的键位
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
+" ===
+" === NERDTree
+" ===
+map tt :NERDTreeToggle<CR>
+"let NERDTreeMapOpenExpl = ""
+"let NERDTreeMapUpdir = ""
+let NERDTreeMapUpdirKeepOpen = "l"
+let NERDTreeMapOpenSplit = ""
+let NERDTreeOpenVSplit = ""
+let NERDTreeMapActivateNode = "i"
+let NERDTreeMapOpenInTab = "o"
+let NERDTreeMapPreview = ""
+let NERDTreeMapCloseDir = "n"
+let NERDTreeMapChangeRoot = "y"
 
-  " ==
-  " == python-format
-  " ==
-  let g:formatter_yapf_style = 'google'
-  noremap <F3> :Autoformat<CR>
-  au BufWrite * :Autoformat
-  autocmd FileType vim,tex let b:autoformat_autoindent=0
+" ==
+" == python-format
+" ==
+let g:formatter_yapf_style = 'google'
+noremap <F3> :Autoformat<CR>
+autocmd FileType vim,tex,markdown let b:autoformat_autoindent=0
 
-  " ==
-  " == NERDTree-git
-  " ==
-  let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-      \ }
+" ==
+" == NERDTree-git
+" ==
+let g:NERDTreeIndicatorMapCustom = {
+  \ "Modified"  : "✹",
+  \ "Staged"    : "✚",
+  \ "Untracked" : "✭",
+  \ "Renamed"   : "➜",
+  \ "Unmerged"  : "═",
+  \ "Deleted"   : "✖",
+  \ "Dirty"     : "✗",
+  \ "Clean"     : "✔︎",
+  \ "Unknown"   : "?"
+    \ }
 
-      " ===
-      " === You Complete ME
-      " ===
-      nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-      nnoremap g/ :YcmCompleter GetDoc<CR>
-      nnoremap gt :YcmCompleter GetType<CR>
-      nnoremap gr :YcmCompleter GoToReferences<CR>
-      let g:ycm_autoclose_preview_window_after_completion=0
-      let g:ycm_autoclose_preview_window_after_insertion=1
+" ===
+" === You Complete ME
+" ===
+nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap g/ :YcmCompleter GetDoc<CR>
+nnoremap gt :YcmCompleter GetType<CR>
+nnoremap gr :YcmCompleter GoToReferences<CR>
+let g:ycm_autoclose_preview_window_after_completion=0
+let g:ycm_autoclose_preview_window_after_insertion=1
 
 
-      " ===
-      " === Snippets
-      " ===
-      inoremap <c-e> <nop>
-      let g:UltiSnipsExpandTrigger="<c-e>"
-      let g:UltiSnipsJumpForwardTrigger="<c-e>"
-      let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-      let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
+" ===
+" === Snippets
+" ===
+inoremap <c-e> <nop>
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-e>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', 'UltiSnips']
 
-      " ===
-      " === ale
-      " ===
-      let g:airline#extensions#ale#enabled = 1
-      let g:ale_linters_explicit = 1
-      " Write this in your vimrc file
-      let g:ale_lint_on_text_changed = 'never'
-      let g:ale_lint_on_insert_leave = 0
-      " if you don't want linters to run on opening a file
-      let g:ale_lint_on_enter = 0
+" ===
+" === ale
+" ===
+let g:airline#extensions#ale#enabled = 1
+let g:ale_linters_explicit = 1
+" Write this in your vimrc file
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
 
-      " ===
-      " === MarkdownPreview
-      " ===
-      let g:mkdp_auto_start = 0
-      let g:mkdp_auto_close = 1
-      let g:mkdp_refresh_slow = 0
-      let g:mkdp_command_for_global = 0
-      let g:mkdp_open_to_the_world = 0
-      let g:mkdp_open_ip = ''
-      let g:mkdp_browser = 'google-chrome-stable'
-      let g:mkdp_echo_preview_url = 0
-      let g:mkdp_browserfunc = ''
-      let g:mkdp_preview_options = {
-        \ 'mkit': {},
-        \ 'katex': {},
-        \ 'uml': {},
-        \ 'maid': {},
-        \ 'disable_sync_scroll': 0,
-        \ 'sync_scroll_type': 'middle',
-        \ 'hide_yaml_meta': 1
-          \ }
-          let g:mkdp_markdown_css = ''
-          let g:mkdp_highlight_css = ''
-          let g:mkdp_port = ''
-          let g:mkdp_page_title = '「${name}」'
+" ===
+" === MarkdownPreview
+" ===
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+let g:mkdp_browser = 'google-chrome-stable'
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+  \ 'mkit': {},
+  \ 'katex': {},
+  \ 'uml': {},
+  \ 'maid': {},
+  \ 'disable_sync_scroll': 0,
+  \ 'sync_scroll_type': 'middle',
+  \ 'hide_yaml_meta': 1
+    \ }
+let g:mkdp_markdown_css = ''
+let g:mkdp_highlight_css = ''
+let g:mkdp_port = ''
+let g:mkdp_page_title = '「${name}」'
 
-          source ~/.vim/md-snips.vim
-          " ===
-          " === Python-syntax
-          " ===
-          let g:python_highlight_all = 1
+source ~/.vim/md-snips.vim
+" ===
+" === Python-syntax
+" ===
+let g:python_highlight_all = 1
 
-          " ===
-          " === vim-indent-guide
-          " ===
-          let g:indent_guides_guide_size = 1
-          let g:indent_guides_start_level = 2
-          let g:indent_guides_enable_on_vim_startup = 1
-          let g:indent_guides_color_change_percent = 1
+" ===
+" === vim-indent-guide
+" ===
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 1
 
-          " ===
-          " === vim-visual-multi
-          " ===
-          "let g:VM_theme             = 'iceblue'
-          "let g:VM_default_mappings = 0
-          "let g:VM_leader                     = {'default': ',', 'visual': ',', 'buffer': ','}
-          let g:VM_maps                       = {}
-          "let g:VM_custom_motions             = {'n': 'h', 'i': 'l', 'u': 'k', 'e': 'j', 'N': '0', 'I': '$', 'h': 'e'}
-          "let g:VM_maps['i']                  = 'k'
-          "let g:VM_maps['I']                  = 'K'
-          let g:VM_maps['Find Under']         = '<C-k>'
-          let g:VM_maps['Find Subword Under'] = '<C-k>'
-          "let g:VM_maps['Find Next']          = ''
-          "let g:VM_maps['Find Prev']          = ''
-          let g:VM_maps['Remove Region']      = 'q'
-          let g:VM_maps['Skip Region']        = '<c-n>'
-          "let g:VM_maps["Undo"]               = 'l'
-          let g:VM_maps["Redo"]               = '<C-r>'
+" ===
+" === vim-visual-multi
+" ===
+"let g:VM_theme             = 'iceblue'
+"let g:VM_default_mappings = 0
+"let g:VM_leader                     = {'default': ',', 'visual': ',', 'buffer': ','}
+let g:VM_maps                       = {}
+"let g:VM_custom_motions             = {'n': 'h', 'i': 'l', 'u': 'k', 'e': 'j', 'N': '0', 'I': '$', 'h': 'e'}
+"let g:VM_maps['i']                  = 'k'
+"let g:VM_maps['I']                  = 'K'
+let g:VM_maps['Find Under']         = '<C-k>'
+let g:VM_maps['Find Subword Under'] = '<C-k>'
+"let g:VM_maps['Find Next']          = ''
+"let g:VM_maps['Find Prev']          = ''
+let g:VM_maps['Remove Region']      = 'q'
+let g:VM_maps['Skip Region']        = '<c-n>'
+"let g:VM_maps["Undo"]               = 'l'
+let g:VM_maps["Redo"]               = '<C-r>'
 
-          " ===
-          " === Undotree
-          " ===
-          let g:undotree_DiffAutoOpen = 0
-          map L :UndotreeToggle<CR>
+" ===
+" === Undotree
+" ===
+let g:undotree_DiffAutoOpen = 0
+map L :UndotreeToggle<CR>
 
-          " ===
-          " === Tanslator
-          " ===
-          " Echo translation in the cmdline
-          nmap <silent><Leader>t :Translate<CR>
-          vmap <silent><Leader>t :TranslateV<CR>
-          " Display translation in a window
-          " Replace the text with translation
-          "nmap <silent><Leader>z :TranslateR<CR>
-          "vmap <silent><Leader>z :TranslateRV<CR>
-          " Translate the text in clipboard
-          nmap <silent><Leader>x :TranslateX<CR>
+" ===
+" === Tanslator
+" ===
+" Echo translation in the cmdline
+nmap <silent><Leader>t :Translate<CR>
+vmap <silent><Leader>t :TranslateV<CR>
+" Display translation in a window
+" Replace the text with translation
+"nmap <silent><Leader>z :TranslateR<CR>
+"vmap <silent><Leader>z :TranslateRV<CR>
+" Translate the text in clipboard
+nmap <silent><Leader>x :TranslateX<CR>
 
-          " Compile function,press <F5> to run code
-  map <F5> :call CompileRunGcc()<CR>
+" Compile function,press <F5> to run code
+" Compile function
+map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
   exec "w"
   if &filetype == 'c'
-  exec "!g++ % -o %<"
-  exec "!time ./%<"
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
   elseif &filetype == 'cpp'
-  exec "!g++ % -o %<"
-  exec "!time ./%<"
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
   elseif &filetype == 'java'
-  exec "!javac %"
-  exec "!time java %<"
+    exec "!javac %"
+    exec "!time java %<"
   elseif &filetype == 'sh'
-  :!time bash %
+    :!time bash %
   elseif &filetype == 'python'
   set splitbelow
   :sp
-  :term python %"
+  :term python %
   elseif &filetype == 'html'
-  exec "!chrome % &"
+    exec "!firefox % &"
   elseif &filetype == 'markdown'
-  exec "MarkdownPreview"
+    exec "MarkdownPreview"
   elseif &filetype == 'vimwiki'
-  exec "MarkdownPreview"
+    exec "MarkdownPreview"
   endif
-  endfunc
-  set showcmd
+endfunc
+set showcmd
