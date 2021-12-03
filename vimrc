@@ -53,6 +53,9 @@ set foldlevel=99
 set laststatus=2
 set autochdir
 
+noremap = nzz
+noremap - Nzz
+
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 map s <nop>
