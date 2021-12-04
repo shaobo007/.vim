@@ -53,6 +53,7 @@ set foldlevel=99
 set laststatus=2
 set autochdir
 
+"searching
 noremap = nzz
 noremap - Nzz
 
@@ -63,6 +64,10 @@ map J <nop>
 map S :w<CR>
 map R :source $MYVIMRC<CR>
 map Q :q<CR>
+
+" 映射切换buffer的键位
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
 
 "分屏操作"
 map sl :set splitright<CR>:vsplit<CR>
@@ -102,6 +107,13 @@ noremap B 5b
 noremap J 5j
 noremap K 5k
 
+" Copy to system clipboard
+vnoremap Y "+y
+
+" Indentation
+"nnoremap < <<
+"nnoremap > >>
+
 "figlet"
 noremap tx :r !figlet
 
@@ -110,6 +122,8 @@ noremap <LEADER><CR> :nohlsearch<CR>
 
 "open a terminal window
 noremap <LEADER>/ :set splitbelow<CR>:term<CR>
+
+"edit config file anywhere
 noremap <LEADER>e :tabe<CR>:e ~/.vim/vimrc<CR>
 noremap <LEADER>ra :tabe<CR>:e ~/.config/ranger/rc.conf<CR>
 noremap <LEADER>rc :tabe<CR>:e ~/.bashrc<CR>
@@ -131,6 +145,9 @@ nmap <C-c> zz
 
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h
+
+" find and replace
+noremap \s :%s//g<left><left>
 
 "安装插件"
 call plug#begin('~/.vim/plugged')
@@ -217,9 +234,7 @@ let g:airline_theme='dark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#buffer_nr_show = 0
-" 映射切换buffer的键位
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>
+
 " ===
 " === NERDTree
 " ===
@@ -315,6 +330,7 @@ let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
 source ~/.vim/md-snips.vim
+autocmd BufRead,BufNewFile *.md setlocal spell
 " ===
 " === Python-syntax
 " ===
