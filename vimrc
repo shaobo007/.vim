@@ -109,7 +109,7 @@ noremap K 5k
 
 " Copy to system clipboard
 vnoremap Y "+y
-
+noremap P "+gp
 " Indentation
 "nnoremap < <<
 "nnoremap > >>
