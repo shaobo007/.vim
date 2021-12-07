@@ -131,6 +131,9 @@ noremap <LEADER>rc :tabe<CR>:e ~/.bashrc<CR>
 " Press space twice to jump to the next '<+++>' and edit it
 noremap <LEADER>z <Esc>/<+++><CR>:nohlsearch<CR>c5l
 
+"git 
+nnoremap <C-g> :!lazygit<CR><CR>
+
 " Spelling Check with <space>sc
 map <LEADER>ss :set spell!<CR>
 noremap <C-x> ea<C-x>s
