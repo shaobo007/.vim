@@ -52,6 +52,8 @@ set foldmethod=indent
 set foldlevel=99
 set laststatus=2
 set autochdir
+set ttyfast "should make scrolling faster
+set lazyredraw "same as above
 
 "searching
 noremap = nzz
@@ -142,6 +144,8 @@ inoremap <C-x> <Esc>ea<C-x>s
 " Press ` to change case (instead of ~)
 map ` ~
 
+" quit compile
+noremap <LEADER>b :q<CR>:q<CR>
 "居中
 imap <C-c> <Esc>zza
 nmap <C-c> zz
@@ -227,6 +231,7 @@ Plug 'wincent/terminus'
 
 "other util
 Plug 'makerj/vim-pdf'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -284,8 +289,8 @@ nnoremap gt :YcmCompleter GetType<CR>
 nnoremap gr :YcmCompleter GoToReferences<CR>
 let g:ycm_autoclose_preview_window_after_completion=0
 let g:ycm_autoclose_preview_window_after_insertion=1
-
-
+let g:ycm_max_num_candidates = 10
+nmap <leader>d <plug>(YCMHover)
 " ===
 " === Snippets
 " ===
@@ -302,7 +307,8 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_linters_explicit = 1
 " Write this in your vimrc file
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_insert_leave = 1
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
 
@@ -338,6 +344,12 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 " === Python-syntax
 " ===
 let g:python_highlight_all = 1
+
+" ===
+" === goyo
+" ===
+noremap <LEADER>gy :Goyo<CR>
+
 
 " ===
 " === vim-indent-guide
